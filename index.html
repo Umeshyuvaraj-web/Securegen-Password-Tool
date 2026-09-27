@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SecureGen — Password Security Tool</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+    </div>
+
+    <header class="navbar">
+
+        <div class="brand">
+            <div class="brand-icon">🔐</div>
+
+            <div>
+                <h1>SecureGen</h1>
+                <span>Password Security Tool</span>
+            </div>
+        </div>
+
+        <button id="themeToggle" class="theme-btn" title="Toggle theme">
+            🌙
+        </button>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="badge">
+                🛡️ Secure Password Generator
+            </div>
+
+            <h2>
+                Create <span>stronger</span> passwords.
+            </h2>
+
+            <p>
+                Generate secure, random passwords using modern browser
+                cryptography and analyze their strength instantly.
+            </p>
+
+        </section>
+
+
+        <!-- MAIN GRID -->
+
+        <section class="dashboard">
+
+            <!-- GENERATOR -->
+
+            <div class="card generator-card">
+
+                <div class="card-header">
+                    <div>
+                        <span class="section-label">PASSWORD GENERATOR</span>
+                        <h3>Create your password</h3>
+                    </div>
+
+                    <div class="security-icon">
+                        🛡️
+                    </div>
+                </div>
+
+
+                <!-- PASSWORD DISPLAY -->
+
+                <div class="password-box">
+
+                    <input
+                        type="text"
+                        id="passwordOutput"
+                        placeholder="Your secure password will appear here"
+                        readonly
+                    >
+
+                    <button id="copyBtn" class="copy-btn">
+                        📋
+                    </button>
+
+                </div>
+
+
+                <!-- STRENGTH -->
+
+                <div class="strength-section">
+
+                    <div class="strength-header">
+                        <span>Password Strength</span>
+
+                        <strong id="strengthText">
+                            Not generated
+                        </strong>
+                    </div>
+
+                    <div class="strength-bar">
+                        <div id="strengthFill"></div>
+                    </div>
+
+                    <div class="strength-info">
+                        <span id="entropyText">
+                            Entropy: 0 bits
+                        </span>
+
+                        <span id="crackText">
+                            —
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- LENGTH -->
+
+                <div class="control-section">
+
+                    <div class="control-header">
+                        <label for="length">
+                            Password Length
+                        </label>
+
+                        <strong id="lengthValue">
+                            16
+                        </strong>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="length"
+                        min="6"
+                        max="64"
+                        value="16"
+                    >
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="options">
+
+                    <label class="option">
+                        <input type="checkbox" id="uppercase" checked>
+                        <span class="custom-check"></span>
+
+                        <div>
+                            <strong>Uppercase</strong>
+                            <small>A-Z</small>
+                        </div>
+                    </label>
+
+
+                    <label class="option">
+                        <input type="checkbox" id="lowercase" checked>
+                        <span class="custom-check"></span>
+
+                        <div>
+                            <strong>Lowercase</strong>
+                            <small>a-z</small>
+                        </div>
+                    </label>
+
+
+                    <label class="option">
+                        <input type="checkbox" id="numbers" checked>
+                        <span class="custom-check"></span>
+
+                        <div>
+                            <strong>Numbers</strong>
+                            <small>0-9</small>
+                        </div>
+                    </label>
+
+
+                    <label class="option">
+                        <input type="checkbox" id="symbols" checked>
+                        <span class="custom-check"></span>
+
+                        <div>
+                            <strong>Symbols</strong>
+                            <small>!@#$%</small>
+                        </div>
+                    </label>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="actions">
+
+                    <button id="generateBtn" class="generate-btn">
+                        <span>⚡</span>
+                        Generate Password
+                    </button>
+
+                    <button id="clearBtn" class="clear-btn">
+                        Clear
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- SECURITY PANEL -->
+
+            <aside class="card security-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="section-label">SECURITY ANALYSIS</span>
+                        <h3>Password insights</h3>
+                    </div>
+
+                    <div class="lock-icon">
+                        🔒
+                    </div>
+
+                </div>
+
+
+                <div class="security-score">
+
+                    <div class="score-circle">
+
+                        <div>
+                            <strong id="score">
+                                0
+                            </strong>
+
+                            <span>
+                                /100
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <h4 id="scoreTitle">
+                        Generate a password
+                    </h4>
+
+                    <p id="scoreDescription">
+                        Your password security analysis will appear here.
+                    </p>
+
+                </div>
+
+
+                <div class="security-checks">
+
+                    <div class="check" id="checkLength">
+                        <span>✓</span>
+                        <div>
+                            <strong>Good Length</strong>
+                            <small>At least 12 characters</small>
+                        </div>
+                    </div>
+
+                    <div class="check" id="checkVariety">
+                        <span>✓</span>
+                        <div>
+                            <strong>Character Variety</strong>
+                            <small>Multiple character types</small>
+                        </div>
+                    </div>
+
+                    <div class="check" id="checkRandom">
+                        <span>✓</span>
+                        <div>
+                            <strong>Randomized</strong>
+                            <small>Cryptographically generated</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+        <!-- HISTORY -->
+
+        <section class="card history-card">
+
+            <div class="history-header">
+
+                <div>
+                    <span class="section-label">
+                        LOCAL HISTORY
+                    </span>
+
+                    <h3>
+                        Recently generated
+                    </h3>
+                </div>
+
+                <button id="clearHistory">
+                    Clear History
+                </button>
+
+            </div>
+
+            <div id="historyList" class="history-list">
+
+                <div class="empty-history">
+                    <span>🕘</span>
+                    <p>No passwords generated yet.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SECURITY TIP -->
+
+        <section class="security-tip">
+
+            <div class="tip-icon">
+                💡
+            </div>
+
+            <div>
+                <strong>Security Tip</strong>
+
+                <p>
+                    Never reuse passwords across important accounts.
+                    Use a unique password for every service and consider
+                    using a trusted password manager.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            🔐 SecureGen • Built with HTML, CSS & JavaScript
+        </p>
+
+        <span>
+            Uses the Web Crypto API for secure randomness
+        </span>
+
+    </footer>
+
+
+    <div id="toast" class="toast">
+        Password copied!
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
